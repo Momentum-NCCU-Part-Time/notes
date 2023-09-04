@@ -1,0 +1,1 @@
+![](images/django-diagram.png)

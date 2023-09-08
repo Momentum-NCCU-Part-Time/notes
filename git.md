@@ -39,10 +39,10 @@ You invented your own version control!
 
 ## Setup
 
-To install git with Homebrew:
+To install git with apt:
 
 ```sh
-$ brew install git
+$ sudo apt install git
 ```
 
 Set your name and email in `gitconfig`
@@ -104,7 +104,7 @@ After accepting the project in GitHub Classroom, you will see a link to your new
 2. GitHub Classroom will create a new repo in your team's GitHub organization with your GitHub username in it and will show you a link to it on the project invitation page.
 3. On the page with your repo, click on the green button that says "Clone or download". On the tab that says "Clone with HTTPS," copy the URL show there.
 4. Clone the project repo to your local environment using `git clone` in your terminal. Be sure you are in the directory where you want to keep your project.
-5. Open your project in VS Code and do your work there.
+5. Open your project in VS Codium and do your work there.
 6. Periodically add and commit your work to your local repo using the terminal and the commands you have learned.
 7. When you are done, push your work to the remote repo.
 8. You can go to your repo on GitHub and see your commits there.

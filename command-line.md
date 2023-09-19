@@ -2,17 +2,16 @@
 
 ## The prompt
 
-The prompt is the place in the terminal where you type commands. By default, it usually shows your computer’s name and your username:
+The prompt is the place in the terminal where you type commands. By default, it usually shows your username@computerName:
 
 ```sh
-Alexs-MacBook-Pro:~ alexrandall$ pwd
+chuck@l13$ pwd
 ```
-
 When commands are entered successfully, you don’t always receive feedback that something happened. The usual indication that everything is OK is the appearance of the prompt.
 
 ### NOTE
 
-The prompt often starts with a `$`. You installed the [starship prompt](https://starship.rs/) as part of the computer setup instructions. That changed the way your prompt looks and the information it displays. With starship installed, your prompt will start with this character: `❯` instead of `$`.
+The prompt often starts with a `$`. You changed the prompt as part of the computer setup instructions.
 
 ## Commands
 
@@ -33,7 +32,7 @@ Arguments are information included with a command to modify its behavior.
 One or more arguments may usually be included, separated by whitespace.
 
 ```sh
-$ cal Nov 2018
+$ cal Sep 2023
 $ ls ~/Documents/
 ```
 
@@ -61,26 +60,18 @@ $ ls -lt ~/Documents/
 How do you know what a command does, or what arguments and options a command can accept? The `man` (short for "manual") command accepts the name of other commands as arguments.
 
 ```sh
-$ man cal
+$ man cat
 ```
 
 ## Exiting `man`
 
-man pages use another utility called less to display information. Check out the man pages on it!
-
-To get back to the prompt from less, press "q".
-
-## How to get back to the prompt
-
-# If the command line hangs or you want to stop a process that is ongoing, use the keystroke Ctrl-C. Sometimes you’ll see it written as ^C.
-
-`man` pages use another utility called `less` to display information. Check out the man pages on it!
+man pages use another utility called `less` to display information. Check out the man pages on it!
 
 To get back to the prompt from `less`, press "q".
 
 ## How to get back to the prompt
 
-If the command line hangs or you want to stop a process that is ongoing, use the keystroke Ctrl-C. Sometimes you’ll see it written as `^C`.
+# If the command line hangs or you want to stop a process that is ongoing, use the keystroke Ctrl-C. Sometimes you’ll see it written as ^C.
 
 Try this out by using the following command:
 
@@ -120,7 +111,7 @@ You can see your **current working directory** (the one you are "in") with `pwd`
 
 ```sh
 $ pwd
-/Users/yourusername/momentum/somedirectory
+/home/yourusername/momentum/somedirectory
 $ cd directory_name
 ```
 
@@ -229,7 +220,7 @@ $ echo $PATH
 
 ```sh
 $ touch new-file.txt
-$ open index.html
+$ chromium index.html
 $ cp index.html main.html
 $ mv index.html ~/projects/website/index.html
 $ rm new-file.txt
@@ -255,11 +246,10 @@ $ head addresses.csv
 
 ## Opening a File
 
-You can open the default text editor, or any desktop app on a Mac, from the command line.
+You can open the default text editor, or any desktop app on Ubuntu, from the command line.
 
 ```sh
-$ open -t newfile.txt
-$ open -a "Visual Studio Code" index.html
+$ open newfile.txt
 ```
 
 ## Clearing the terminal
@@ -268,7 +258,7 @@ Sometimes the screen can feel cluttered. To clear your terminal screen you can:
 
 - Type `clear` at the prompt
 
-- `Cmd-K` on OS X
+- `Ctrl-L` on Ubuntu
 
 This doesn’t clear your command history; it just makes your screen look neater!
 

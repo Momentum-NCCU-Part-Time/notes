@@ -249,7 +249,7 @@ $ head addresses.csv
 You can open the default text editor, or any desktop app on Ubuntu, from the command line.
 
 ```sh
-$ open -t newfile.txt
+$ open newfile.txt
 ```
 
 ## Clearing the terminal

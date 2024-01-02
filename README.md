@@ -2,7 +2,6 @@
 
 ## Table of Contents
 
-### Phase 1: Front End
 
 - [Command Line](command-line.md)
 - [Git](git.md)
@@ -17,14 +16,4 @@
 - [JS Objects](js-objects.md)
 - [AJAX](js-ajax.md)
 
-### Phase 2: Back End with Python
-
-- [Intro to Python](intro-python.md)
-- [Python Lists, Dicts, and Tuples](py-lists-dicts-tuples.md)
-- [Python List Comprehensions](py-list-comprehensions.md)
-- [Working With Files in Python](py-working-with-files.md)
-- [Object Oriented Programming in Python](py-oo-programming.md)
-- [A Tour of Django](django-tour.md)
-- [Structure of Django Diagram](django-diagram.md)
-- [Django Models](django-models.md)
-- [O2M and M2M Diagram](django-relationships.md)
+- [Node](node.md)

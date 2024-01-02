@@ -82,6 +82,8 @@ REPL stands for
 
 Modules provide a way to organize your code into separate files. You can write code for one purpose in a single file, then import that files into any other file you want to use it in.
 
+---
+
 - You can also create your own modules and import them into your code
 - Modules are just JS files that export something
 - You can export a function, an object, a class, etc
@@ -90,10 +92,9 @@ Modules provide a way to organize your code into separate files. You can write c
 
 ---
 
-## ES6 Modules
+## ES Modules
 
 You've been using this syntax in Vue to import and export components.
-
 
 ```js
 // App.vue
@@ -108,15 +109,29 @@ export default {
   }
 }
 </script>
+
 ```
 
-```js
+---
+
+## ESM import/export works in Node, but...
+
+As of version 15.3.0, you can use ESM in Node, but you have to do a few things to make it work.
+
+- Add `"type": "module"` to your `package.json` file
+- Change the file extension of your JS files to `.mjs`
+- Use `import` and `export` instead of `require` and `module.exports`
 
 ---
 
 ## CommonJS (CJS) Modules
 
-This is the default way to import and export modules in Node.
+The default way to import and export modules in Node using the `require` function and the `module.exports` object.
+
+---
+
+### exporting a module
+
 
 ```js
 // define and export a module
@@ -133,6 +148,10 @@ module.exports = {
   add
 }
 ```
+
+---
+
+### importing a module
 
 ```js
 // import a module in another file
@@ -158,6 +177,8 @@ console.log(lib.default_theme) // 'dark'
 - You can omit the file extension if it's a `.js` file
 - You can omit the path if it's a built-in module or a module installed in `node_modules`
 
+---
+
 All of these require statements are potentially valid, depending on the location and name of the module you are trying to include:
 
 ```js
@@ -175,11 +196,16 @@ Let's check out a few of the modules in Node's standard library.
 
 - [`fs` - file system](https://nodejs.org/docs/latest/api/fs.html)
   - check out [fs.readFile](https://nodejs.org/docs/latest/api/fs.html#fsreadfilepath-options-callback)
-- `process` - information about the current process
+- [`process`](https://nodejs.org/docs/latest/api/process.html) - information about the current process
   - check out [`process.argv`](https://nodejs.org/docs/latest/api/process.html#processargv)
-- `readline` - read from a stream one line at a time
+- [`readline`](https://nodejs.org/docs/latest/api/readline.html) - read from a stream one line at a time
   - check out [`readline.createInterface`](https://nodejs.org/docs/latest/api/readline.html#readline_readline_createinterface_options)
-- 'http' - create an HTTP server
+
+---
+
+### more modules
+
+- [`http`](https://nodejs.org/docs/latest/api/http.html) - create an HTTP server
   - check out [`http.createServer`](https://nodejs.org/docs/latest/api/http.html#http_http_createserver_options_requestlistener)
 - [global objects](https://nodejs.org/docs/latest/api/globals.html#global-objects) (not a module, but still part of the standard library)
 - [URL](https://nodejs.org/docs/latest/api/url.html#url)

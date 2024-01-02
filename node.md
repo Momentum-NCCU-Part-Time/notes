@@ -80,7 +80,7 @@ REPL stands for
 
 ## Modules
 
-Modules provide a way to organize your code into separate files. You can write code for one purpose in a single file, then import that files into any other file you want to use it in.
+Modules provide a way to organize your code into separate files. You can write code for one purpose in a single file, then import that file into any other file you want to use it in.
 
 ---
 

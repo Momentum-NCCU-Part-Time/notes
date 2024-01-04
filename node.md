@@ -17,35 +17,56 @@
 - Node has no DOM (no `window` and no `document`)
 - Node has a standard library (modules) that can do things like work with the filesystem
 
+[Node documentation: https://nodejs.org/docs/latest/api/](https://nodejs.org/docs/latest/api/)
+
 ---
 
-### Non-blocking
+## Non-blocking
 
 When a request is made to a Node server, it doesn't wait to finish processing that request before it starts processing the next request.
 
+[Great video explaining this concept](https://www.youtube.com/watch?v=wB9tIg209-8)
+
 ---
 
-### Event-driven
+## Event-driven
 
-Node uses events to handle requests. A request comes in and triggers an event. The server listens for that event and then runs the code associated with that event.
+The flow of a Node.js program is determined by events such as user actions, system events, or messages from other programs. A Node program responds to events as they occur by running its associated event handler function. Node also emits its own events that can trigger code execution.
+
+Node is continuously running an event loop that allows it to handle and process a queue of events.
+
+[Great video explaining the JavaScript Event Loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 
 ---
 
 ## I/O is input/output
 
-- Input: reading data from a source (like a file or a database)
-- Output: writing data to a destination (like a file or a database)
+- Input: e.g. reading data from a source (like a file or a database)
+- Output: e.g. writing data to a destination (like a file or a database)
 
 ---
 
 ## There are lots of possible I/O Sources
 
-- File system on the server
-- Databases like MongoDB or PostgreSQL
-- HTTP requests from a web browser or mobile app
-- APIs like Stripe or Google Maps (there are lots and lots of APIs)
+- File system operations (like reading and writing files)
+- Database operations (querying and updating data in a database like MongoDB or PostgreSQL)
+- User input operations (like reading from or displaying info at the command line)
+- Network operations (like HTTP requests to APIs like Stripe or Google Maps)
 
 ---
+
+## What does asynchronous mean?
+
+Node.js's _asynchronous_ I/O allows it to handle a large number of concurrent I/O operations efficiently.
+
+Asynchronous I/O means that the server doesn't wait for an I/O operation to finish before moving on to the next operation (one operation does not block the next one!).
+
+---
+
+# Enough talk, let's see some code!
+
+---
+
 
 ## Running Node locally
 
@@ -71,10 +92,11 @@ REPL stands for
 
 ---
 
-## Nodemon
+## Hello World in Node.js
 
-- Install [nodemon](https://nodemon.io/) to automatically restart your server when you make changes to your code
-- Run `nodemon <filename>` to run a JS file in Node with nodemon
+1. Make a file called hello-world.js
+2. Add a line to the file that logs "Hello World" to the console
+3. Run `node hello-world.js` in your terminal
 
 ---
 
@@ -210,3 +232,11 @@ Let's check out a few of the modules in Node's standard library.
 - [global objects](https://nodejs.org/docs/latest/api/globals.html#global-objects) (not a module, but still part of the standard library)
 - [URL](https://nodejs.org/docs/latest/api/url.html#url)
   - check out the [`URL` class](https://nodejs.org/docs/latest/api/url.html#class-url)
+
+---
+
+## Nodemon
+
+- Install [nodemon](https://nodemon.io/) to automatically restart your server when you make changes to your code
+- Run `nodemon <filename>` to run a JS file in Node with nodemon
+

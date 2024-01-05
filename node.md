@@ -161,7 +161,7 @@ The default way to import and export modules in Node using the `require` functio
 
 const default_theme = 'dark'
 
-const add(num1, num2) {
+function add(num1, num2) {
   return num1 + num2
 }
 

@@ -132,6 +132,30 @@ GET /lists/1/items?category=produce
 
 ---
 
+### 📌 Use plural nouns for consistency
+
+✅ `/shopping-lists/1`
+
+❌ `/shopping-list/1`
+
+---
+
+### 📌 Use nouns instead of verbs
+
+✅ `/shopping-lists/1/items`
+
+❌ `/shopping-lists/1/get-items`
+
+---
+
+### 📌 Use clear names for resources, not abbreviations
+
+✅ `/shopping-lists/1/items`
+
+❌ `/sl/1/i`
+
+---
+
 ### 📌 Don’t nest resources unnecessarily
 
 Nesting is helpful if you need to use some information in the URL path (like an id) to look things up in the database

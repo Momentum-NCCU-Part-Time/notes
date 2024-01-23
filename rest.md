@@ -112,7 +112,7 @@ GET /lists/1/items?category=produce
 
 ---
 
-### 📌 Use hyphens (kebab-case) instead of underscores or camel-case in the URL
+### 📌 Use hyphens (kebab-case) instead of underscores or camelCase in the URL
 
 ✅ `/shopping-lists`
 
@@ -158,8 +158,7 @@ GET /lists/1/items?category=produce
 
 ### 📌 Don’t nest resources unnecessarily
 
-Nesting is helpful if you need to use some information in the URL path (like an id) to look things up in the database
-
+Nesting is helpful if you need to use some information in the URL path (like an id) to look things up in the database, but try to avoid nesting more than one level deep.
 
 ❌ `shopping-lists/1/items/4`
 
@@ -219,6 +218,7 @@ Paginating your API lets you manage large amounts of data, preventing your respo
 ```
 GET /shopping-lists?page=1&limit=50
 ```
+
 For example, if a request would return 500 objects, your response may return the first set of 50 records with a link to the next set of 50 (and so on). The client would make another request to get the next set of 50 records.
 
 ---
@@ -248,5 +248,3 @@ GET https://shopping-list-api.com/v1/shopping-lists
 There are no enforceable rules for REST APIs.
 
 The most important thing is to be consistent and to make sure that your API is easy to use and understand.
-
----

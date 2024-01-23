@@ -1,58 +1,116 @@
 # REST API Development 101
 
-## HTTP Methods, CRUD, & Database actions
-
-| HTTP method | CRUD action     | SQL                                 |
-| ----------- | --------------- | ----------------------------------- |
-| POST        | Create          | INSERT                              |
-| GET         | Read (Retrieve) | SELECT                              |
-| PUT/PATCH   | Update          | UPDATE                              |
-| DELETE      | Destroy         | DELETE                              |
+---
 
 ## REST is a convention for structuring API data
 
-REST (shorthand for “Representational State Transfer”) is a set of guidelines for how to represent information in an API that provides data by means of HTTP requests. We consider this data “resources.” Resources in your API are usually the *nouns* in your project -- the things you are representing in your application.
+REST (shorthand for “Representational State Transfer”) is a set of guidelines for how to represent information in an API that provides data by means of HTTP requests. 
+
+---
+
+## Data in your API is represented as resources
+
+Resources are usually the **nouns** in your project -- the things you are representing in your application.
+
+- shopping lists
+- shopping list items
+- notes
+- albums
+- songs
+
+---
 
 ### RESTful APIs provide endpoints to access data
 
 You can think of an endpoint as an HTTP Method + URL + resource
 
-## Resources can be single or a collection
+`GET /shopping-lists`
 
-Resources can be **single** or a **collection**. Shopping lists are a resource in shopping list project; so are items on a shopping list. Some resources you need for the shopping list project are::
+**returns a JSON array of all shopping lists**
 
-- *details about one specific shopping list* (a **single** resource)
-- *a list of all your shopping lists* (a **collection** resource)
-- *a list of all your items on a shopping list* (a **collection** resource)`
+---
 
-Almost all REST APIs implement urls like the following to provide CRUD actions for single and collection resources.
+## Methods map to CRUD actions
 
-| HTTP method | URL       | Description of resource      |
+| HTTP method | CRUD action      | SQL    |
+| ----------- | ---------------- | ------ |
+| POST        | Create           | INSERT |
+| GET         | Read (Retrieve)  | SELECT |
+| PUT         | Update (replace) | UPDATE |
+| PATCH       | Update (partial) | UPDATE |
+| DELETE      | Destroy          | DELETE |
+
+---
+
+## Different HTTP methods for the same path
+
+| HTTP method | URL             | resource / action          |
+| ----------- | --------------- | -------------------------- |
+| GET         | /shopping-lists | list of all shopping lists |
+| POST        | /shopping-lists | create a new shopping list |
+
+---
+
+## Resources can be **single** or a **collection**
+
+**collection**
+```
+GET /shopping-lists/
+```
+
+**single**
+
+```
+GET /shopping-lists/1
+```
+
+#### An id identifies a single resource. In this example, the id is `1`.
+
+---
+
+## Different HTTP methods for the same path
+
+### for a single resource
+
+| HTTP method | URL       | resource      |
 | ----------- | --------- | ---------------------------- |
-| GET         | /shopping-lists   | list of all shopping lists           |
-| POST        | /shopping-lists   | create a new shopping list |
 | GET         | /shopping-lists/1 | one shopping list with id 1          |
 | PUT/PATCH   | /shopping-lists/1 | update shopping list with id 1       |
 | DELETE      | /shopping-lists/1 | delete shopping list with id 1       |
 
+---
+
 ## Resources can be **nested to show relationships**
 
-Related resources can be **nested.** This means that you can show the relationship between two resources by nesting the URL for one resource inside the URL for another resource.
+Related resources can be **nested.** This can show a relationship between two resources by nesting the URL for one resource inside the URL for another resource.
 
-For example, you may want to show shopping list items related to a single shopping list.
+`GET /lists/1/items`
 
-You could represent all the items (collection) for a specific shopping list like so:
+The above URL combines a **single** resource with a **collection** resource.
 
-| GET | /lists/1/items | Show all items for shopping list with id 1|
-| --- | ----------------------- | ------------------------------------------ |
+---
+
+## Resources can be **filtered** with **query parameters**
+
+For example, you may want to show all the items on a shopping list that are in the “produce” category.
+
+```
+GET /lists/1/items?category=produce
+```
+
+---
 
 ## **Best Practices for your REST API**
+
+---
 
 ### 📌 Use lower-case letters in the URL
 
 ✅ `/items`
 
 ❌ `/Items`
+
+---
 
 ### 📌 Use hyphens (kebab-case) instead of underscores or camel-case in the URL
 
@@ -62,21 +120,34 @@ You could represent all the items (collection) for a specific shopping list like
 
 ❌ `/shopping_lists`
 
-### 📌 Don’t use CRUD verbs in the URL; the HTTP method already has a verb that maps to a CRUD action
+---
+
+### 📌 Don’t use CRUD verbs in the URL
+
+#### the HTTP method already has a verb that maps to a CRUD action
 
 ✅ PATCH `shopping-lists/1`
 
 ❌ PATCH `shopping-lists/1/edit`
 
-### 📌 Don’t nest resources unless you need to use some information in the URL path (like an id) to look things up in the database in your view
+---
+
+### 📌 Don’t nest resources unnecessarily
+
+Nesting is helpful if you need to use some information in the URL path (like an id) to look things up in the database
+
 
 ❌ `shopping-lists/1/items/4`
 
 ✅ `items/4`
 
+---
+
 ### 📌 Consider what you should include in your API and what you should leave out
 
 For example, you probably don’t want to provide a list of all your application’s users, except to users with special permissions.
+
+---
 
 ### 📌 Use the right [status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
@@ -93,12 +164,65 @@ Some of the most common status codes are:
 | 404         | Not Found                                                    |
 | 405         | Method Not Allowed                                           |
 
-### 📌 Use [pagination](https://www.django-rest-framework.org/api-guide/pagination/#pagination)
+---
+
+### 📌 Return error codes
+
+If a user makes a request that your API can’t handle, return an error message that explains what went wrong.
+
+```js
+res.status(404).json({ message: "Shopping list not found" });
+```
+
+---
+
+Status codes are better with cats.
+
+![fit](https://http.cat/401)
+
+--- 
+
+Or dogs
+
+![fit](https://httpstatusdogs.com/img/200.jpg)
+
+---
+
+### 📌 Use pagination
 
 Paginating your API lets you manage large amounts of data, preventing your responses from becoming too slow and unwieldy.
 
-For example, if a request would return 200 objects, your response may return the first set of 50 records with a link to the next set of 50 (and so on).
+```
+GET /shopping-lists?page=1&limit=50
+```
+For example, if a request would return 500 objects, your response may return the first set of 50 records with a link to the next set of 50 (and so on). The client would make another request to get the next set of 50 records.
+
+---
 
 ### 📌 Document your API
 
-So that your users know what your endpoints are, how to use them, and what to expect in response. There are tools that you can use to generate documentation, but you can also just write up your endpoints and how they work in a README.md file in your repo.
+So that your users know what your endpoints are, how to use them, and what to expect in response. 
+
+There are tools that you can use to generate documentation, but you can also just write up your endpoints and how they work in a README.md file in your repo.
+
+---
+
+### 📌 Use versioning
+
+Versioning your API lets you make changes to your API without breaking existing clients.
+
+```
+GET https://shopping-list-api.com/v1/shopping-lists
+```
+
+---
+
+# These are guidelines for humans
+
+### So do what you think is best for your use case
+
+There are no enforceable rules for REST APIs.
+
+The most important thing is to be consistent and to make sure that your API is easy to use and understand.
+
+---
